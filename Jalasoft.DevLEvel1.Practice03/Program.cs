@@ -51,4 +51,7 @@ bookManager.Show();
 Console.WriteLine("=======================");
 bookManager.RemoveBook(book7);
 bookManager.Show();
+bookManager.LendBook(book4, "Paola");
+bookManager.FindBookByLenderName("Paola");
+
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -76,6 +77,7 @@ namespace Jalasoft.DevLEvel1.Practice03
         private void InternalLend(Book book, string NameLender,  List<Book> books)
         {
             var resultEssay = books.First(x => x.CompareTo(book) && book.Status);
+        
             if (resultEssay != null)
             {
                 book.Status = false;
@@ -85,17 +87,33 @@ namespace Jalasoft.DevLEvel1.Practice03
 
         public void Show()
         {
-            foreach (var item in novels)
+            //foreach (var item in novels)
+            //{
+            //    item.Show();
+            //}
+            //foreach (var item in comics)
+            //{
+            //    item.Show();
+            //}
+            //foreach (var item in essays)
+            //{
+            //    item.Show();
+            //}
+            /////////////
+            novels.ForEach(x => x.Show());
+            comics.ForEach(x => x.Show());
+            essays.ForEach(x => x.Show());
+            
+            // novels.ForEach(x => Console.WriteLine("Titulo del libro es: {0}, Autor:{1}, Disponible para prestamo:{2}",x.Name,x.Author,x.Status));
+
+        }
+        public void FindBookByLenderName(string lendName)
+        {
+            var query = novels.Where(x => x.LenderName == lendName);
+           // query.ForEach(x => Console.WriteLine(x.Name));
+           foreach(var book in query)
             {
-                item.Show();
-            }
-            foreach (var item in comics)
-            {
-                item.Show();
-            }
-            foreach (var item in essays)
-            {
-                item.Show();
+                Console.WriteLine("El cliente {0} se presto los libros {1} ",lendName, book.Name);
             }
 
         }
